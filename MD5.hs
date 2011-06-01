@@ -24,8 +24,8 @@ auxH x y z = x `xor` y `xor` z
 auxI :: AuxFunction
 auxI x y z = y `xor` (x .|. complement z)
 
-initilaState :: State
-initilaState = (0x67452301,
+initialState :: State
+initialState = (0x67452301,
                 0xefcdab89,
                 0x98badcfe,
                 0x10325476)
@@ -73,7 +73,7 @@ md5 xs = let iter :: State -> [Word8] -> State
              iter state ms = iter state' restMs
                where state' = transform state (decode currentMs)
                      (currentMs, restMs) = splitAt 64 ms
-         in getDigest $ iter initilaState message
+         in getDigest $ iter initialState message
            where message = padding xs
 
 md5File :: FilePath -> IO String
