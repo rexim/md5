@@ -1,3 +1,5 @@
+{-# LANGUAGE ExtendedDefaultRules #-}
+
 module MD5 (md5String, md5File) where
 
 import Data.Word
@@ -58,7 +60,7 @@ padding xs = xs ++ (take n pad) ++ count
         n = if a > 0 then a else 64 + a
         a = 56 - (fromIntegral $ byteLen `mod` 64)
 
-        byteLen = genericLength xs :: Word64
+        byteLen = genericLength xs
         bitLen  = byteLen * 8
 
         count = encode $ map fromIntegral [bitLen .&. 0xffffffff,
