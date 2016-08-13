@@ -31,8 +31,7 @@ initialState = (0x67452301,
                 0x10325476)
 
 oneRound :: [(Word32, Int, Word32)] -> State -> AuxFunction -> State
-oneRound f = foldl $ \(x, s, t) (a, b, c, d) = (d, a', b, c)
-  where a' = b + ((a + (f b c d) + x + t) `rotateL` s)
+oneRound f = foldl $ \(x, s, t) (a, b, c, d) -> (d, b + ((a + (f b c d) + x + t) `rotateL` s), b, c)
 
 -- Implements https://tools.ietf.org/html/rfc1321
 transform :: [Word32] -> State -> State
