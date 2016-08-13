@@ -46,7 +46,7 @@ transform blocks (a, b, c, d) = (a + aa, b + bb, c + cc, d + dd) where
   data3 = zip3 (x 5 3) (s [4, 11, 16, 23]) (t 33 48)
   data4 = zip3 (x 0 7) (s [6, 10, 15, 21]) (t 49 64)
 
-  x start step = take 16 $ map head $ chunksOf (step - 1) $ drop start $ cycle blocks where
+  x start step = take 16 $ map head $ chunksOf step $ drop start $ cycle blocks where
   s xs = take 16 $ cycle xs
   t start end = map (\x -> truncate $ 4294967296 * abs (sin x)) [start..end]
 
