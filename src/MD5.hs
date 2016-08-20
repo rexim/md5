@@ -35,12 +35,12 @@ oneRound f = foldl $ \(a, b, c, d) (x, s, t) -> (d, b + ((a + (f b c d) + x + t)
 
 -- Implements https://tools.ietf.org/html/rfc1321
 transform :: [Word32] -> State -> State
-transform blocks (a, b, c, d) = (a + aa, b + bb, c + cc, d + dd) where 
+transform blocks (a, b, c, d) = (a + aa, b + bb, c + cc, d + dd) where
   round1           = oneRound auxF (a, b, c, d) data1
   round2           = oneRound auxG round1 data2
   round3           = oneRound auxH round2 data3
   (aa, bb, cc, dd) = oneRound auxI round3 data4
-  
+
   data1 = zip3 (x 0 1) (s [7, 12, 17, 22]) (t  1 16)
   data2 = zip3 (x 1 5) (s [5,  9, 14, 20]) (t 17 32)
   data3 = zip3 (x 5 3) (s [4, 11, 16, 23]) (t 33 48)
