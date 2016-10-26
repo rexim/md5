@@ -3,7 +3,7 @@
 My implementation of md5 as an exercise for a cryptography university
 course.
 
-WARNING! This implementation is very uneffective, so don't use it for
+WARNING! This implementation is very inefficient, so don't use it in
 a real work.
 
 ## Usage
